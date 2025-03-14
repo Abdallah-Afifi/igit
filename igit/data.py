@@ -27,5 +27,3 @@ def get_object(oid, expected='blob'):
     
 
 
-def is_ignored(path):
-    return '.igit' in path.split('/')

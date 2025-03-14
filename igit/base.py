@@ -12,3 +12,7 @@ def write_tree(directory='.'):
             elif entry.is_dir(follow_symlinks=False):
                 write_tree(full)
     # TODO write the tree object
+
+
+def is_ignored(path):
+    return '.igit' in path.split('/')
