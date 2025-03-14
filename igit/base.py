@@ -31,6 +31,20 @@ def _iter_tree_entries(oid):
         type_, oid, name = entry.split(' ', 2)
         yield type_, oid, name
 
+def get_tree(oid, base_path=''):
+    result = {}
+    for type_, oid, name in _iter_tree_entries(oid):
+        assert '/' not in name
+        assert name not in ('.', '..')
+        path = base_path + name
+        if type_ == 'blob':
+            result[path] = oid
+        elif type_ == 'tree':
+            result.update(get_tree(oid, f'{path}/'))
+        else:
+            assert False, f'Unknown tree entry {type_}'
+    return result
+
 
 def is_ignored(path):
     return '.igit' in path.split('/')
