@@ -22,8 +22,12 @@ def fetch(remote_path):
 def push(remote_path, refname):
     # get refs data
     remote_refs = _get_remote_refs(remote_path)
+    remote_ref = remote_refs.get(refname)
     local_ref = data.get_ref(refname).value
     assert local_ref
+
+    # don't allow force push
+    assert not remote_ref or base.is_ancestor(local_ref, remote_ref)
 
     # check for missing objects
     known_remote_refs = filter(data.object_exists, remote_refs.values())
