@@ -12,9 +12,10 @@ from . import diff
 
 
 def main():
-    args = parse_args()
-    args.func(args)
-
+    with data.change_git_dir('.'):
+        args = parse_args()
+        args.func(args)
+        
 def parse_args():
     parser = argparse.ArgumentParser()
 
