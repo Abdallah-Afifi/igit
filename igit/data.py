@@ -25,3 +25,7 @@ def get_object(oid, expected='blob'):
         assert type_ == expected, f'Expected {expected}, got {type_}'
     return content
     
+
+
+def is_ignored(path):
+    return '.igit' in path.split('/')
