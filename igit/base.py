@@ -64,7 +64,7 @@ def _empty_current_directory():
 
 
 def read_tree(tree_oid):
-    
+    _empty_current_directory()
     for path, oid in get_tree(tree_oid, base_path='./').items():
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, 'wb') as f:
