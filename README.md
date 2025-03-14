@@ -8,10 +8,10 @@ igit is a lightweight implementation of Git written in Python. It provides core 
 git clone https://github.com/Abdallah-Afifi/igit.git
 cd igit
 python setup.py develop --user
-mponents:
+```
 
-## Usage 
-
+## Usage
+```bash
 # Create a new repository
 igit init
 
@@ -43,7 +43,7 @@ igit tag <tag-name> [<commit-id>]
 igit remote add <name> <url>
 igit push <remote> <branch>
 igit pull <remote> <branch>
-
+```
 ## Requirements
 Python 3.6+
-No external dependencies beyond the standard library
+
