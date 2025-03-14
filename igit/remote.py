@@ -21,12 +21,17 @@ def fetch(remote_path):
 
 def push(remote_path, refname):
     # get refs data
+    remote_refs = _get_remote_refs(remote_path)
     local_ref = data.get_ref(refname).value
     assert local_ref
 
-    objects_to_push = base.iter_objects_in_commits({local_ref})
+    # check for missing objects
+    known_remote_refs = filter(data.object_exists, remote_refs.values())
+    remote_objects = set(base.iter_objects_in_commits(known_remote_refs))
+    local_objects = set(base.iter_objects_in_commits([local_ref]))
+    objects_to_push = local_objects - remote_objects
 
-    # push all objects
+    # push missing objects only
     for oid in objects_to_push:
         data.push_object(oid, remote_path)
     
