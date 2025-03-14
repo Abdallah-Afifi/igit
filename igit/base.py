@@ -119,7 +119,7 @@ def iter_commits_and_parents(oids):
     oids = set(oids)
     visited = set()
     while oids:
-        oids.pop()
+        oid = oids.pop()
         if not oid or oid in visited:
             continue
         visited.add(oid)
