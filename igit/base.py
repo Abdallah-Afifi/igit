@@ -6,6 +6,10 @@ import string
 from . import data
 from collections import deque, namedtuple
 
+def init():
+    data.init()
+    data.update_ref('HEAD', data.RefValue(symbolic=True, value='refs/heads/master'))
+
 def write_tree(directory='.'):
     entries = []
     with os.scandir(directory) as it:
