@@ -1,6 +1,7 @@
 import os
 
 from . import data
+from . import base
 
 REMOTE_REFS_BASE = 'refs/heads'
 LOCAL_REFS_BASE = 'refs/remotes'
@@ -8,6 +9,10 @@ LOCAL_REFS_BASE = 'refs/remotes'
 def fetch(remote_path):
     # get refs from remote
     refs = _get_remote_refs(remote_path, REMOTE_REFS_BASE)
+
+    # fetch missing objects
+    for oid in base.iter_objects_in_commits(refs.values()):
+        data.fetch_object_if_missing(oid, remote_path)
 
     # update local refs
     for remote_name, value in refs.items():
