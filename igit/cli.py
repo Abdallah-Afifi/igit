@@ -218,4 +218,4 @@ def merge(args):
     base.merge(args.commit)
 
 def merge_base(args):
-    print(base.merge_base(args.commit1, args.commit2))
+    print(base.get_merge_base(args.commit1, args.commit2))
