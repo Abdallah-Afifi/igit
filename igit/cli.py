@@ -1,4 +1,7 @@
 import argparse
+import os
+
+from . import data
 
 
 
@@ -19,4 +22,5 @@ def parse_args():
     return parser.parse_args()
 
 def init(args):
-    print('init called')
+    data.init()
+    print (f'Initialized empty igit repository in {os.getcwd()}/{data.GIT_DIR}')
