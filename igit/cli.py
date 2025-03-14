@@ -86,6 +86,11 @@ def parse_args():
     merge_parser.set_defaults(func=merge)
     merge_parser.add_argument('commit', type=oid)
 
+    merge_base_parser = commands.add_parser('merge-base')
+    merge_base_parser.set_defaults(func=merge_base)
+    merge_base_parser.add_argument('commit1', type=oid)
+    merge_base_parser.add_argument('commit2', type=oid)
+
 
 
 
@@ -211,3 +216,6 @@ def reset(args):
 
 def merge(args):
     base.merge(args.commit)
+
+def merge_base(args):
+    print(base.merge_base(args.commit1, args.commit2))
